@@ -15,9 +15,9 @@ echo Looking for updates in directory:
 echo %u%
 echo.
 
-set i=%~dp0X17-59186.iso
+set s=%~dp0X17-59186.iso
 echo Name for ISO file:
-echo %i%
+echo %s%
 echo.
 
 set r=%~dp0w7pro
@@ -46,17 +46,17 @@ echo.
 for /f "tokens=*" %%d in ('dir /b "%u%" ^| sed -n "$="') do echo Total number of updates to slipstream: %%d
 echo.
 
-set m=1 2 3 4
-echo Updates will be slipstreamed into install.wim index(es): %m%
+set i=1 2 3 4
+echo Updates will be slipstreamed into install.wim index(es): %i%
 echo.
 
 echo Extracting iso..
 if exist "%w%\iso" rd "%w%\iso" /Q /S
-7z x "%i%" -o"%w%\iso" > nul 2>&1
+7z x "%s%" -o"%w%\iso" > nul 2>&1
 
 cd "C:\Program Files (x86)\Windows Kits\8.1\Assessment and Deployment Kit\Deployment Tools\amd64\DISM"
 if not exist "%w%\mount" md "%w%\mount"
-for %%a in (%m%) do (
+for %%a in (%i%) do (
 echo mounting install.wim index %%a..
 dism /mount-wim /wimfile:"%w%\iso\sources\install.wim" /index:%%a /mountdir:"%w%\mount" > nul 2>&1
 for /f "tokens=*" %%i in ('dir /b "%u%" ^| sed "s/^.*(KB//g;s/).*$//g" ^| gnusort -n') do (
@@ -83,3 +83,4 @@ endlocal
 echo.
 echo This is it!
 time /t
+pause
