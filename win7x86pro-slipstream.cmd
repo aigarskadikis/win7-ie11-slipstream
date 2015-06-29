@@ -16,13 +16,8 @@ echo %u%
 echo.
 
 set s=%~dp0X17-59183.iso
-echo Name for ISO file:
+echo Name for source ISO file:
 echo %s%
-echo.
-
-set r=%~dp0w7pro
-echo Additional files (like autounattend.xml) will be overwrited from:
-echo %r%
 echo.
 
 set w=%temp%
@@ -75,8 +70,6 @@ dism /unmount-wim /mountdir:"%w%\mount" /commit
 )
 if exist "%w%\mount" rd "%w%\mount" /Q /S
 echo.
-echo Adding autounattend.xml or something..
-xcopy "%r%" "%w%\iso" /Y /S /F /Q
 "C:\Program Files (x86)\Windows Kits\8.1\Assessment and Deployment Kit\Deployment Tools\amd64\Oscdimg\oscdimg.exe" -b"%w%\iso\boot\etfsboot.com" -h -u2 -m -l%v% "%w%\iso" "%d%\%v%-%yyyymmdd%.iso"
 if exist "%w%\iso" rd "%w%\iso" /Q /S
 endlocal
