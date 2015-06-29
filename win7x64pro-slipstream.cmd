@@ -46,7 +46,7 @@ echo.
 for /f "tokens=*" %%d in ('dir /b "%u%" ^| sed -n "$="') do echo Total number of updates to slipstream: %%d
 echo.
 
-set m=3
+set m=1 2 3 4
 echo Updates will be slipstreamed into install.wim index(es): %m%
 echo.
 
