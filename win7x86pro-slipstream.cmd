@@ -59,10 +59,6 @@ if not exist "%w%\mount" md "%w%\mount"
 for %%a in (%m%) do (
 echo mounting install.wim index %%a..
 dism /mount-wim /wimfile:"%w%\iso\sources\install.wim" /index:%%a /mountdir:"%w%\mount" > nul 2>&1
-echo integrating .NET 2.0, 3.0 and 3.5..
-dism /image:"%w%\mount" /enable-feature /featurename:NetFx3 /all /limitaccess /source:"%w%\iso\sources\sxs" > nul 2>&1
-rem echo integrating drivers..
-rem dism /image:"%w%\mount" /add-driver /driver:"%~dp0d81x64" /recurse
 for /f "tokens=*" %%i in ('dir /b "%u%" ^| sed "s/^.*(KB//g;s/).*$//g" ^| gnusort -n') do (
 for /f "tokens=*" %%d in ('dir /b "%u%" ^| grep "%%i"') do (
 echo slipstreaming KB%%i
