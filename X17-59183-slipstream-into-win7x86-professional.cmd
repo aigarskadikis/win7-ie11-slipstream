@@ -6,11 +6,11 @@ set path=%path%;%~dp0
 for /f "tokens=*" %%d in ('time /t') do echo Slipstream started at: %%d
 echo.
 
-set v=Win7x86
+set v=Win7x86pro
 echo Label for DVD will be: %v%
 echo.
 
-set u=%~dp0u7x86pro
+set u=%~dp0u7x86
 echo Looking for updates in directory:
 echo %u%
 echo.
